@@ -1,11 +1,14 @@
 ---
-apiVersion: source.toolkit.fluxcd.io/v1
-kind: GitRepository
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
 metadata:
   name: pong
   namespace: flux-system
 spec:
-  interval: 30s
-  ref:
-    branch: main
-  url: https://github.com/karan9797/flux-experiments.git
+  interval: 5m0s
+  path: ./manifests
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: pong
+  targetNamespace: default
